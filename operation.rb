@@ -1,5 +1,5 @@
 require 'pg'
-
+require_relative 'base_classes'
 class Users
 
 DB_NAME = 'Byers'
@@ -10,8 +10,10 @@ TABLE_NAME = 'byers'
 		PG.connect :dbname => DB_NAME , :user => DB_USER
 	end
 	
-	def find(con, name)
-		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE name = '#{name}'" 
+	def find(con, name, phone_number, family_name)
+		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE family_name = '#{family_name}'"
+		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE name = '#{name}'"
+		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE phone_number = '#{phone_number}'"
 	end
 	
 	def where(con, options={})	
@@ -33,10 +35,11 @@ TABLE_NAME = 'byers'
 	end
 
 end
-
 user = Users.new
 con = Users.open_connection
 name = gets.chomp
-user.where(con, name: name, phone_number: '')
+family_name = gets.chomp
+phone_number = gets.chomp
+user.where(con, name: name, family_name: family_name, phone_number: phone_number)
 user.show_results
 user.close(con)
