@@ -1,0 +1,3 @@
+class Order < Item
+
+end
