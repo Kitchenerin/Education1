@@ -18,10 +18,8 @@ case choice
     puts "Enter phone_number byers:"
     phone_number = gets.chomp
     Bases.add( id: id, name: name, family_name: family_name, phone_number: phone_number)
-    #Base.save(id: id, name: name, family_name: family_name, phone_number: phone_number)
-    #user.show
-    #user.close(con)
-    return choice
+    puts "Record #{id} is added"
+    Bases.show
 
   when "select"
     puts "Enter id byers:"
@@ -34,8 +32,7 @@ case choice
     phone_number = gets.chomp
     Bases.select(con, id: id, name: name, family_name: family_name, phone_number: phone_number)
     Bases.show
-    #user.close(con)
-    return choice
+    user.close(con)
 
   when "update"
     puts "Enter id byers:"
@@ -49,7 +46,6 @@ case choice
     Bases.update(:id => id,:name => name, :family_name => family_name, :phone_number => phone_number)
     Bases.show
     user.close(con)
-    return choice
 
   when "read"
     puts "Enter id byers:"
@@ -60,15 +56,16 @@ case choice
     family_name = gets.chomp
     puts "Enter phone_number byers:"
     phone_number = gets.chomp
+    puts "Query result:"
     user.where(con, id: id, name: name, family_name: family_name, phone_number: phone_number)
     user.show
     #user.close(con)
-    return choice
 
   when "delete"
     puts "Enter id byers:"
     id = gets.chomp
     Bases.destroy(id: id)
+    puts "Record #{id} is removed"
     Bases.show
     user.close(con)
 end

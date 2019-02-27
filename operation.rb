@@ -31,7 +31,7 @@ TABLE_NAME = 'byers'
 
 	def show
 		@find.each do |row|
-			p row
+			puts row
 		end
 		
 	end

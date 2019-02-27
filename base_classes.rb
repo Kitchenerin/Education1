@@ -17,9 +17,8 @@ DB_USER = 'user'
 			options.each{ |k,v| 
 				@query = @query << "'#{v}'" <<','}
 			@query = @query.chomp(",")
-			connection.exec "#{query<<')'}"
+			connection.exec "#{@query<<')'}"
 			close_connection
-
 		end
 
 		def save (id, name, family_name, phone_number)
@@ -42,7 +41,7 @@ DB_USER = 'user'
 				@query = @query << " #{k}" << " = " << "'#{v}'" << " , " }
 				@query = @query.chomp(' , ')
 				@query = @query << "WHERE "<< "id = '#{id}'"
-			connection.exec "#{query}"
+			connection.exec "#{@query}"
 			close_connection
 		end
 
@@ -63,7 +62,7 @@ DB_USER = 'user'
 	end
 
 		def show
-			@query.each do |row|
+			connection.exec.each do |row|
 				p row
 			end
 
