@@ -1,5 +1,5 @@
 require_relative 'base_classes'
 
-class User < Base
+class User < Bases
 
 end

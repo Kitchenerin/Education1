@@ -1,5 +1,5 @@
 require_relative 'base_classes'
 
-class Car < Base
+class Car < Bases
 
 end

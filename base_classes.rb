@@ -62,8 +62,8 @@ DB_USER = 'user'
 	end
 
 		def show
-			connection.exec.each do |row|
-				p row
+			connection.exec.each do |id, name, family_name, phone_number|
+				puts "#{id} : #{name} : #{family_name} : #{phone_number}"
 			end
 
 		end

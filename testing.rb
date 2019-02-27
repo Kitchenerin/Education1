@@ -1,5 +1,5 @@
-#require_relative 'users'
-#require_relative 'cars'
+require_relative 'users'
+require_relative 'cars'
 require_relative 'base_classes'
 require_relative 'operation'
 user = Users.new
@@ -59,13 +59,15 @@ case choice
     puts "Query result:"
     user.where(con, id: id, name: name, family_name: family_name, phone_number: phone_number)
     user.show
-    #user.close(con)
+    user.close(con)
 
   when "delete"
     puts "Enter id byers:"
     id = gets.chomp
     Bases.destroy(id: id)
     puts "Record #{id} is removed"
-    Bases.show
     user.close(con)
+
+  else
+    puts "Option entered incorrectly"
 end
