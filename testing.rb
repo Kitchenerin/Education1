@@ -8,6 +8,7 @@ puts "What would you like do? Options: (create)(read)(update)(select)(delete)"
 choice = gets.chomp
 case choice
 
+
   when "create"
     puts "Enter id byers:"
     id = gets.chomp
@@ -17,8 +18,9 @@ case choice
     family_name = gets.chomp
     puts "Enter phone_number byers:"
     phone_number = gets.chomp
-    Bases.add( id: id, name: name, family_name: family_name, phone_number: phone_number)
+    Bases.add(id: id, name: name, family_name: family_name, phone_number: phone_number)
     puts "Record #{id} is added"
+
 
   when "select"
     puts "Enter id byers:"
@@ -31,6 +33,7 @@ case choice
     phone_number = gets.chomp
     Bases.select(con, id: id, name: name, family_name: family_name, phone_number: phone_number)
 
+
   when "update"
     puts "Enter condition"
     name = gets.chomp
@@ -38,6 +41,7 @@ case choice
     name = gets.chomp
     Bases.update(:name => name)
     puts "Record is update"
+
 
   when "read"
     puts "Enter id byers:"
@@ -52,6 +56,7 @@ case choice
     user.where(con, id: id, name: name, family_name: family_name, phone_number: phone_number)
     user.show
     user.close(con)
+
 
   when "delete"
     puts "Enter id byers:"
