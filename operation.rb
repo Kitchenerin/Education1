@@ -11,10 +11,7 @@ TABLE_NAME = 'byers'
 	end
 	
 	def find(con, id, name, family_name, phone_number)
-		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE id = '#{id}'"
-		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE family_name = '#{family_name}'"
-		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE name = '#{name}'"
-		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE phone_number = '#{phone_number}'"
+		@find = con.exec "SELECT * FROM #{TABLE_NAME} WHERE id = '#{id}', name = '#{name}', family_name = '#{family_name}', phone_number = '#{phone_number}'"
 	end
 	
 	def where(con, options={})	
