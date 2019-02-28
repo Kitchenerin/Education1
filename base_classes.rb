@@ -1,11 +1,6 @@
 require 'pg'
 
 class Bases
-  def initialize(find = 'names', user = 'family_name', query = 'add')
-    @find = find
-    @user = user
-    @query = query
-  end
 
   rowId = ARGV[0]
 
@@ -14,6 +9,14 @@ class Bases
   @table_name = 'byers'
 
   class << self
+
+    def initialize(id = 'id', name = 'name', family_name = 'family_name', phone_number = 'phone_number')
+      @id = id
+      @name = name
+      @family_name = family_name
+      @phone_number = phone_number
+    end
+
     def connection
       PG.connect :dbname => DB_NAME, :user => DB_USER
     end
