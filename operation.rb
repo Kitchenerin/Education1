@@ -2,6 +2,7 @@ require 'pg'
 require_relative 'base_classes'
 class Users
 
+
   DB_NAME = 'Byers'
   DB_USER = 'user'
   TABLE_NAME = 'byers'

@@ -1,7 +1,11 @@
 require 'pg'
 
 class Bases
-
+	def initialize(find = 'names', user = 'family_name', query = 'add' )
+		@find = find
+		@user = user
+		@query = query
+	end
 	rowId = ARGV[0]
 
 	DB_NAME = 'Byers'
