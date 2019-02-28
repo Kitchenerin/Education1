@@ -1,6 +1,4 @@
 require 'pg'
-require_relative 'cars'
-require_relative 'users'
 class Bases
 
   rowId = ARGV[0]
@@ -82,5 +80,11 @@ class Bases
       end
 
     end
+  end
+end
+
+class Car < Bases
+  def initialize(id = '#{id}', name = '#{name}', family_name = '#{family_name}', phone_number = '#{phone_number}')
+    super(id,name,family_name,phone_number)
   end
 end
