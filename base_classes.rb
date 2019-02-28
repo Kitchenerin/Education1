@@ -12,10 +12,10 @@ class Bases
   class << self
 
     def initialize(id = 'id', name = 'name', family_name = 'family_name', phone_number = 'phone_number')
-      @id = id
-      @name = name
-      @family_name = family_name
-      @phone_number = phone_number
+        @id = id
+        @name = name
+        @family_name = family_name
+        @phone_number = phone_number
     end
 
     def connection
