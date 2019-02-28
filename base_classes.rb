@@ -1,5 +1,6 @@
 require 'pg'
-
+require_relative 'cars'
+require_relative 'users'
 class Bases
 
   rowId = ARGV[0]
