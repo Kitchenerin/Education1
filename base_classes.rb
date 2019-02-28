@@ -2,12 +2,13 @@ require 'pg'
 
 class Bases
 
-DB_NAME = 'Byers'
+	rowId = ARGV[0]
+
+	DB_NAME = 'Byers'
 DB_USER = 'user'
 @table_name = 'byers'
 
 	class << self
-
 		def connection
 			PG.connect :dbname => DB_NAME , :user => DB_USER
 		end
@@ -27,7 +28,8 @@ DB_USER = 'user'
 		end
 
 		def select(logic_operation=nil, **options)
-			@query = "SELECT * FROM #{@table_name} WHERE"
+			#@query = "SELECT * FROM #{@table_name} WHERE"
+			names = ["SELECT * FROM #{@table_name} WHERE"]
 			options.each{ | k,v |
 				@query = @query << " #{k}" << " = " << "'#{v}'" << " #{logic_operation}" }
 				#@query = query.chomp(logic_operation)
@@ -35,10 +37,14 @@ DB_USER = 'user'
 			close_connection
 		end
 
-		def update(id,**options)
-			@query = "UPDATE #{@table_name} SET "
-			options.each{ | k,v |
-				@query = @query << " #{k}" << " = " << "'#{v}'" << " , " }
+		def update(name,**options)
+			@query = "UPDATE #{@table_name} SET #{@changedName}= "
+				rs = connection.exec "SELECT ARRAY(SELECT name FROM #{@table_name} LIMIT 3)"
+				rs.each do |row|
+					puts row
+				end
+				@changedName = rs[1]
+				options.each{ | k,v | @query = @query << " #{k}" << " = " << "'#{v}'" }
 				@query = @query.chomp(' , ')
 				@query = @query << "WHERE "<< "id = '#{id}'"
 			connection.exec "#{@query}"
@@ -62,8 +68,8 @@ DB_USER = 'user'
 	end
 
 		def show
-			connection.exec.each do |id, name, family_name, phone_number|
-				puts "#{id} : #{name} : #{family_name} : #{phone_number}"
+			connection.exec.each do |row|
+				puts "%s %s %s" % [ row['id'], row['name'], row['family_name'], row['phone_number'] ]
 			end
 
 		end

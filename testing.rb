@@ -19,7 +19,6 @@ case choice
     phone_number = gets.chomp
     Bases.add( id: id, name: name, family_name: family_name, phone_number: phone_number)
     puts "Record #{id} is added"
-    Bases.show
 
   when "select"
     puts "Enter id byers:"
@@ -31,21 +30,14 @@ case choice
     puts "Enter phone_number byers:"
     phone_number = gets.chomp
     Bases.select(con, id: id, name: name, family_name: family_name, phone_number: phone_number)
-    Bases.show
-    user.close(con)
 
   when "update"
-    puts "Enter id byers:"
-    id = gets.chomp
-    puts "Enter name byers:"
+    puts "Enter condition"
     name = gets.chomp
-    puts "Enter family_name byers:"
-    family_name = gets.chomp
-    puts "Enter phone_number byers:"
-    phone_number = gets.chomp
-    Bases.update(:id => id,:name => name, :family_name => family_name, :phone_number => phone_number)
-    Bases.show
-    user.close(con)
+    puts "Enter name byers"
+    name = gets.chomp
+    Bases.update(:name => name)
+    puts "Record is update"
 
   when "read"
     puts "Enter id byers:"
